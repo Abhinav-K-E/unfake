@@ -3,6 +3,7 @@ import "./LinkTab.scss";
 import ICON from "../../../assets/link.svg";
 
 import toast from "react-hot-toast";
+import useFetch from "../../../hooks/useFetch";
 
 const LinkTab = () => {
   const [link, setLink] = useState("");
@@ -11,6 +12,7 @@ const LinkTab = () => {
     console.log("link : ", link);
     if (link.length > 0) {
       toast.success(link);
+      const data = useFetch(link);
     } else {
       toast.error("Enter a valid link");
     }

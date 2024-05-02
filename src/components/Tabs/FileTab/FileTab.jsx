@@ -2,6 +2,7 @@ import React, { useCallback, useState, useRef } from "react";
 import { useDropzone } from "react-dropzone";
 import "./FileTab.scss";
 import Loader from "../../../pages/Loader/Loader";
+import toast from "react-hot-toast";
 
 const FileTab = () => {
   const [file, setFile] = useState(null);
@@ -46,6 +47,9 @@ const FileTab = () => {
       setLoader(false);
     } catch (error) {
       console.error("Error uploading file:", error);
+      toast.error("can't upload the file");
+    } finally {
+      setLoader(false);
     }
     // Now you can handle uploading the file formData to your server
   }

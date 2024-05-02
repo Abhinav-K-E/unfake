@@ -9,6 +9,11 @@ const LinkTab = () => {
 
   const handleUpload = () => {
     console.log("link : ", link);
+    if (link.length > 0) {
+      toast.success(link);
+    } else {
+      toast.error("Enter a valid link");
+    }
   };
 
   return (

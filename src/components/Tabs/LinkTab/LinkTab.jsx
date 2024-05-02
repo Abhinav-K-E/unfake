@@ -8,13 +8,15 @@ import useFetch from "../../../hooks/useFetch";
 import { baseUrl } from "../../../constant";
 import { useStore } from "../../../context/StoreContext";
 import { useNavigate } from "react-router-dom";
+import Loader from "../../../pages/Loader/Loader";
 
 const LinkTab = () => {
   const [link, setLink] = useState("");
-  const[result,setResult]=useState([]);
+  const [result, setResult] = useState([]);
+  const [loader, setLoader] = useState(false);
 
-  const {setFinalResult}=useStore();
-  const navigate =useNavigate();
+  const { setFinalResult } = useStore();
+  const navigate = useNavigate();
 
   const getImages = async (id) => {
     const res = await fetch(`${baseUrl}/split_vid?fid=${id}`, {
@@ -28,14 +30,15 @@ const LinkTab = () => {
     return images;
   };
 
-  const handleUpload = async() => {
+  const handleUpload = async () => {
     console.log("link : ", link);
     if (link.length > 0) {
-      toast.success(link);
+      setLoader(true);
       const id = await useFetch(link);
       console.log(id);
       const imageSet = await getImages(id);
       setResult(imageSet.snap);
+      setLoader(false);
     } else {
       toast.error("Enter a valid link");
     }
@@ -68,40 +71,34 @@ const LinkTab = () => {
               src={`${baseUrl}/dwd/${item}`}
               alt="shot-img"
               className="img-shot"
-              onClick={()=>imageRedirect(item)}
+              onClick={() => imageRedirect(item)}
             ></img>
           ))}
-        </div>
-        <div className="button-container">
-          <button className="button">
-            Check Now
-            <svg fill="currentColor" viewBox="0 0 24 24" className="icon">
-              <path
-                clipRule="evenodd"
-                d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25zm4.28 10.28a.75.75 0 000-1.06l-3-3a.75.75 0 10-1.06 1.06l1.72 1.72H8.25a.75.75 0 000 1.5h5.69l-1.72 1.72a.75.75 0 101.06 1.06l3-3z"
-                fillRule="evenodd"
-              />
-            </svg>
-          </button>
         </div>
       </div>
     </div>
   ) : (
     <div className="tab-content">
-      <div className="i-box">
-        <img src={ICON} className="icon" alt="icon" />
-        <input
-          type="url"
-          className="input-box"
-          placeholder="https://google.com"
-          onChange={(e) => setLink(e.target.value)}
-          value={link}
-        />
-      </div>
+      {loader ? (
+        <Loader />
+      ) : (
+        <>
+          <div className="i-box">
+            <img src={ICON} className="icon" alt="icon" />
+            <input
+              type="url"
+              className="input-box"
+              placeholder="https://google.com"
+              onChange={(e) => setLink(e.target.value)}
+              value={link}
+            />
+          </div>
 
-      <button onClick={handleUpload} className="create-btn">
-        Upload
-      </button>
+          <button onClick={handleUpload} className="create-btn">
+            Upload
+          </button>
+        </>
+      )}
     </div>
   );
 };

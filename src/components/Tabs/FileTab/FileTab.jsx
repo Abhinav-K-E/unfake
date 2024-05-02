@@ -6,6 +6,8 @@ import toast from "react-hot-toast";
 import { useStore } from "../../../context/StoreContext";
 import { useNavigate } from "react-router-dom";
 
+import {baseUrl} from '../../../constant.js'
+
 const FileTab = () => {
   const { finalResult, setFinalResult, setImageSet, imageSet } = useStore();
   const [fid, setfId] = useState();
@@ -13,8 +15,6 @@ const FileTab = () => {
   const [loader, setLoader] = useState(false);
   const [result, setResult] = useState([]);
   const navigate = useNavigate();
-
-  const baseUrl = "https://f478-2a09-bac5-3daa-16a0-00-241-3b.ngrok-free.app";
 
   const fileInputRef = useRef(null);
 

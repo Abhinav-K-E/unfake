@@ -3,6 +3,8 @@ import { useStore } from "../../context/StoreContext";
 
 import { Progress } from "rsuite";
 
+import { baseUrl } from "../../constant";
+
 const ResultPage = () => {
   const customProgressBarStyle = {
     width: "200px", // Adjust the width of the progress bar
@@ -15,7 +17,7 @@ const ResultPage = () => {
   };
 
   const { finalResult, setFinalResult } = useStore();
-  const baseUrl = "https://f478-2a09-bac5-3daa-16a0-00-241-3b.ngrok-free.app";
+
   return (
     <div className="result-page">
       <h1 className="result-head">Analysis</h1>

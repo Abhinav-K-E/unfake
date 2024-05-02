@@ -7,14 +7,14 @@ import { useStore } from "../../../context/StoreContext";
 import { useNavigate } from "react-router-dom";
 
 const FileTab = () => {
-  const { finalResult, setFinalResult } = useStore();
-
+  const { finalResult, setFinalResult, setImageSet, imageSet } = useStore();
+  const [fid, setfId] = useState();
   const [file, setFile] = useState(null);
   const [loader, setLoader] = useState(false);
-  const [result, setResult] = useState("");
-  const navigate =useNavigate();
+  const [result, setResult] = useState([]);
+  const navigate = useNavigate();
 
-  const baseUrl = "https://43b9-2a09-bac5-3b1d-1a82-00-2a4-2.ngrok-free.app";
+  const baseUrl = "https://f478-2a09-bac5-3daa-16a0-00-241-3b.ngrok-free.app";
 
   const fileInputRef = useRef(null);
 
@@ -38,13 +38,6 @@ const FileTab = () => {
     });
     const result = await res.json();
     console.log(result);
-    if (result?.status == "pending" && result?.type == "video") {
-      toast.success("video");
-    } else if (result?.type == "image") {
-      toast.success("image");
-    } else {
-      toast.error("type not defined");
-    }
     return result;
   };
 
@@ -65,14 +58,31 @@ const FileTab = () => {
       });
 
       const result = await response.json();
-      console.log(result.id);
+      setfId(result.id);
       const info = await getInfo(result.id);
 
-      console.log(info);
-      setFinalResult(info);
-      navigate('/result');
-      
-      setResult(result);
+      if (info?.status == "pending" && info?.type == "video") {
+        // toast.success("video");
+        // handle video
+        const getImages = async () => {
+          const res = await fetch(`${baseUrl}/split_vid?fid=${result.id}`, {
+            method: "get",
+            headers: new Headers({
+              "ngrok-skip-browser-warning": "69420",
+            }),
+          });
+          const images = await res.json();
+          console.log(images.snap);
+          setResult(images.snap);
+        };
+        await getImages();
+      } else if (info?.type == "image") {
+        // handle image
+        setFinalResult(info);
+        navigate("/result");
+      } else {
+        toast.error("type not defined");
+      }
       setLoader(false);
     } catch (error) {
       console.error("Error uploading file:", error);
@@ -83,7 +93,54 @@ const FileTab = () => {
     // Now you can handle uploading the file formData to your server
   }
 
-  return (
+  // for image from video
+
+  const imageRedirect = async (id) => {
+    try {
+      const res = await fetch(`${baseUrl}/unmask?fid=${id}`, {
+        method: "get",
+        headers: new Headers({
+          "ngrok-skip-browser-warning": "69420",
+        }),
+      });
+      const result = await res.json();
+      setFinalResult(result);
+      navigate("/result");
+    } catch (error) {
+      console.error("Error uploading file:", error);
+      toast.error("can't upload the file");
+    }
+  };
+
+  return result?.length > 0 ? (
+    <div className="popup">
+      <div className="popup-window">
+        <div className="img-container">
+          {result?.map((item, index) => (
+            <img
+              key={index}
+              src={`${baseUrl}/dwd/${item}`}
+              alt="shot-img"
+              className="img-shot"
+              onClick={()=>imageRedirect(item)}
+            ></img>
+          ))}
+        </div>
+        <div className="button-container">
+          <button className="button">
+            Check Now
+            <svg fill="currentColor" viewBox="0 0 24 24" className="icon">
+              <path
+                clipRule="evenodd"
+                d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25zm4.28 10.28a.75.75 0 000-1.06l-3-3a.75.75 0 10-1.06 1.06l1.72 1.72H8.25a.75.75 0 000 1.5h5.69l-1.72 1.72a.75.75 0 101.06 1.06l3-3z"
+                fillRule="evenodd"
+              />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  ) : (
     <div className="tab-content">
       {loader ? (
         <Loader />

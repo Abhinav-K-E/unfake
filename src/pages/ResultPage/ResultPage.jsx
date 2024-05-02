@@ -15,12 +15,13 @@ const ResultPage = () => {
   };
 
   const { finalResult, setFinalResult } = useStore();
+  const baseUrl = "https://f478-2a09-bac5-3daa-16a0-00-241-3b.ngrok-free.app";
   return (
     <div className="result-page">
       <h1 className="result-head">Analysis</h1>
       <div className="result-grid">
         <div className="result-grid-left">
-          <img src="" alt="" />
+          <img src={`${baseUrl}/dwd/${finalResult?.fid}`} alt="" />
         </div>
         <div className="result-grid-right">
           <div className="result-grp">

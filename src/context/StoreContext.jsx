@@ -1,21 +1,23 @@
-import React, { createContext, useContext, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { createContext, useContext, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 // creating context
 const StoreContext = createContext();
 
 export const StoreProvider = ({ children }) => {
   const [finalResult, setFinalResult] = useState(null);
-  const navigate = useNavigate();
-  const [isDashboard, setIsDashboard] = useState(false);
-
+  const [imageSet, setImageSet] = useState([]);
 
   const value = {
     finalResult,
-    setFinalResult
+    setFinalResult,
+    imageSet,
+    setImageSet,
   };
 
-  return <StoreContext.Provider value={value}>{children}</StoreContext.Provider>;
+  return (
+    <StoreContext.Provider value={value}>{children}</StoreContext.Provider>
+  );
 };
 
 export const useStore = () => {

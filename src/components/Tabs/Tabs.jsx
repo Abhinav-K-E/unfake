@@ -5,7 +5,7 @@ import FileTab from "./FileTab/FileTab";
 
 import { useState } from "react";
 
-const Tabs = () => {
+const Tabs = ({finalResult,setFinalResult}) => {
   const [isSelected, setIsSelected] = useState(1);
   return (
     <div className="box">
@@ -36,7 +36,7 @@ const Tabs = () => {
         </div>
       </div>
       <div className="bottom-box">
-        {isSelected === 1 && <FileTab />}
+        {isSelected === 1 && <FileTab/>}
         {isSelected === 2 && <LinkTab />}
         {isSelected === 3 && <LinkTab />}
         {isSelected === 4 && <LinkTab />}

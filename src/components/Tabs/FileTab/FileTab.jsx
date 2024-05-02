@@ -25,7 +25,7 @@ const FileTab = () => {
   });
 
   const getInfo = async (id) => {
-    const res = await fetch(`${baseUrl}/info?fid=${id}`, {
+    const res = await fetch(`${baseUrl}/unmask?fid=${id}`, {
       method: "get",
       headers: new Headers({
         "ngrok-skip-browser-warning": "69420",

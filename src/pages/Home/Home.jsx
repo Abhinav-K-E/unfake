@@ -13,7 +13,7 @@ const Home = () => {
         </h1>
       </div>
       <div className="sec-2">
-        <Tabs />
+        <Tabs/>
       </div>
       {images.length > 0 && (
         <div className="popup">

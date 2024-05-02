@@ -7,6 +7,7 @@ import Navbar from "./components/Navbar/Navbar";
 import { useEffect, useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
 import PageNotFound from "./pages/PageNotFound/PageNotFound";
+import Pricing from "./pages/Pricing/Pricing";
 
 function App() {
   const [page, setPage] = useState(true);
@@ -19,7 +20,7 @@ function App() {
       <Navbar page={page} />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/pricing" element={<Home />} />
+        <Route path="/pricing" element={<Pricing />} />
         <Route path="/certification" element={<Home />} />
         {/* <Route path="/contact" element={<Contact />} /> */}
         <Route path="*" element={<PageNotFound />} />

@@ -1,4 +1,5 @@
 import "./ResultPage.scss";
+import { useStore } from "../../context/StoreContext";
 
 import { Progress } from "rsuite";
 
@@ -12,6 +13,8 @@ const ResultPage = () => {
     justifyContent: "center",
     // Adjust the font size of the progress bar text
   };
+
+  const { finalResult, setFinalResult } = useStore();
   return (
     <div className="result-page">
       <h1 className="result-head">Analysis</h1>
@@ -23,7 +26,7 @@ const ResultPage = () => {
           <div className="result-grp">
             <div className="result-grp-name">Fake</div>
             <Progress.Circle
-              percent={100} // Set the percentage value
+              percent={Math.round(finalResult?.fake * 100)} // Set the percentage value
               strokeColor={"#0072FA"} // Set the stroke color
               strokeWidth={10} // Set the stroke width
               trailWidth={10} // Set the trail width (background)
@@ -35,7 +38,7 @@ const ResultPage = () => {
           <div className="result-grp">
             <div className="result-grp-name">Real</div>
             <Progress.Circle
-              percent={60} // Set the percentage value
+              percent={Math.round(finalResult?.real * 100)} // Set the percentage value
               strokeColor={"#0072FA"} // Set the stroke color
               strokeWidth={10} // Set the stroke width
               trailWidth={10} // Set the trail width (background)

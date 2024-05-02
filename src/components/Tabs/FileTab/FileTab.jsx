@@ -3,11 +3,16 @@ import { useDropzone } from "react-dropzone";
 import "./FileTab.scss";
 import Loader from "../../../pages/Loader/Loader";
 import toast from "react-hot-toast";
+import { useStore } from "../../../context/StoreContext";
+import { useNavigate } from "react-router-dom";
 
 const FileTab = () => {
+  const { finalResult, setFinalResult } = useStore();
+
   const [file, setFile] = useState(null);
   const [loader, setLoader] = useState(false);
   const [result, setResult] = useState("");
+  const navigate =useNavigate();
 
   const baseUrl = "https://43b9-2a09-bac5-3b1d-1a82-00-2a4-2.ngrok-free.app";
 
@@ -64,7 +69,9 @@ const FileTab = () => {
       const info = await getInfo(result.id);
 
       console.log(info);
-
+      setFinalResult(info);
+      navigate('/result');
+      
       setResult(result);
       setLoader(false);
     } catch (error) {

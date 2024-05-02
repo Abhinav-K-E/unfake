@@ -18,6 +18,6 @@ export const StoreProvider = ({ children }) => {
   return <StoreContext.Provider value={value}>{children}</StoreContext.Provider>;
 };
 
-export const useAuth = () => {
+export const useStore = () => {
   return useContext(StoreContext);
 };

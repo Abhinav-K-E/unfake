@@ -5,6 +5,13 @@
     justify-content: center;
     flex-direction: column;
     gap: 20px;
+    border: 2px dashed var(--primary);
+    border-radius: 10px;
+    padding: 40px;
+
+    svg{
+        margin-top: -20px;
+    }
 }
 
 .file-form{
@@ -21,8 +28,8 @@ input[type="file"]{
 }
 
 .preview{
-    width: 200px;
-    height: 150px;
+    width: 280px;
+    height: 160px;
     border-radius: 20px;
     margin-top: 10px;
 }

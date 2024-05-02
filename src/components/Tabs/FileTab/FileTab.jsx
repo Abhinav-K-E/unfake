@@ -9,6 +9,8 @@ const FileTab = () => {
   const [loader, setLoader] = useState(false);
   const [result, setResult] = useState("");
 
+  const baseUrl = "https://aa8c-2a09-bac5-3dab-1eb-00-31-110.ngrok-free.app";
+
   const fileInputRef = useRef(null);
 
   const onDrop = useCallback((acceptedFiles) => {
@@ -22,9 +24,28 @@ const FileTab = () => {
     multiple: false, // Allow only one file to be uploaded
   });
 
+  const getInfo = async (id) => {
+    const res = await fetch(`${baseUrl}/info?fid=${id}`, {
+      method: "get",
+      headers: new Headers({
+        "ngrok-skip-browser-warning": "69420",
+      }),
+    });
+    const result = await res.json();
+    console.log(result);
+    if (result?.status == "pending" && result?.type == "video") {
+      toast.success("video");
+    } else if (result?.type == "image") {
+      toast.success("image");
+    } else {
+      toast.error("type not defined");
+    }
+    return result;
+  };
+
   async function uploadFile() {
     if (!file) {
-      alert("Please select a file!");
+      toast.error("Please select a file!");
       return;
     }
 
@@ -33,16 +54,17 @@ const FileTab = () => {
 
     try {
       setLoader(true);
-      const response = await fetch(
-        "https://e4d6-2a09-bac5-3b1f-1a82-00-2a4-2.ngrok-free.app/file/upload",
-        {
-          method: "POST",
-          body: formData,
-        }
-      );
+      const response = await fetch(`${baseUrl}/file/upload`, {
+        method: "POST",
+        body: formData,
+      });
 
       const result = await response.json();
-      console.log(result);
+      console.log(result.id);
+      const info = await getInfo(result.id);
+
+      console.log(info);
+
       setResult(result);
       setLoader(false);
     } catch (error) {
@@ -91,15 +113,16 @@ const FileTab = () => {
                 {/* Your upload SVG icon and text here */}
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  width={100}
-                  height={100}
+                  width={64}
+                  height={65}
                   fill="none"
                 >
                   <path
                     fill="#007AFF"
-                    d="M80.625 41.833C77.792 27.458 65.167 16.667 50 16.667c-12.042 0-22.5 6.833-27.708 16.833C9.75 34.833 0 45.458 0 58.333c0 13.792 11.208 25 25 25h54.167C90.667 83.333 100 74 100 62.5c0-11-8.542-19.917-19.375-20.667M58.333 54.167v16.666H41.667V54.167h-12.5l19.375-19.375a2.063 2.063 0 0 1 2.958 0l19.333 19.375z"
+                    d="M51.6 27.273c-1.813-9.2-9.893-16.106-19.6-16.106-7.707 0-14.4 4.373-17.733 10.773C6.24 22.793 0 29.593 0 37.833c0 8.827 7.173 16 16 16h34.667C58.027 53.833 64 47.86 64 40.5c0-7.04-5.467-12.747-12.4-13.227m-14.267 7.894v10.666H26.667V35.167h-8l12.4-12.4a1.32 1.32 0 0 1 1.893 0l12.373 12.4z"
                   />
                 </svg>
+
                 <p>Drag & drop a file here</p>
               </div>
             )}

@@ -4,6 +4,7 @@ import { useStore } from "../../context/StoreContext";
 import { Progress } from "rsuite";
 
 import { baseUrl } from "../../constant";
+import { useNavigate } from "react-router-dom";
 
 const ResultPage = () => {
   const customProgressBarStyle = {
@@ -17,6 +18,8 @@ const ResultPage = () => {
   };
 
   const { finalResult, setFinalResult } = useStore();
+
+  const navigate = useNavigate();
 
   return (
     <div className="result-page">
@@ -53,7 +56,11 @@ const ResultPage = () => {
                 />
               </div>
             </div>
-            <button className="certi-btn">Generate certification</button>
+            <button className="certi-btn"
+            onClick={()=>{
+              navigate('/certification')
+            }}
+            >Generate certification</button>
           </div>
         </div>
       </div>

@@ -3,13 +3,11 @@
   height: 100%;
   padding: 20px;
   display: flex;
-  flex-direction: column;
-  gap: 20px;
-  align-items: center;
+  gap: 10px;
   justify-content: center;
 }
 .certificate {
-  width: 640px;
+  width: 680px;
   height: 520px;
   background-color: #000;
   box-shadow: var(--shadow);
@@ -69,14 +67,14 @@
   gap: 5px;
 }
 
-.grp-title{
-    font-weight: 300;
-    font-size: 14px;
+.grp-title {
+  font-weight: 300;
+  font-size: 14px;
 }
 
-.grp-name{
-    font-weight: 500;
-    font-size: 20px;
+.grp-name {
+  font-weight: 500;
+  font-size: 20px;
 }
 
 .certi-flex-right {
@@ -91,22 +89,23 @@
   }
 }
 
-.qr-sec{
-    margin-top: -60px;
-    display: flex;
-    color: #fff;
-    font-size: 14px;
-    align-items: flex-end;
-    gap: 10px;
+.qr-sec {
+  margin-top: -60px;
+  display: flex;
+  color: #fff;
+  font-size: 14px;
+  align-items: flex-end;
+  gap: 10px;
 }
 
-.certi-btn{
-    padding: 20px 30px;
-    border-radius: 10px;
-    border: none;
-    background-color: var(--primary);
-    color: #fff;
-    font-weight: 500;
-    font-size: 18px;
-    letter-spacing: .1rem;
+.certi-btn {
+  padding: 20px 30px;
+  border-radius: 10px;
+  border: none;
+  background-color:rgba(0, 0, 0, 0.934);
+  color: #fff;
+  font-weight: 500;
+  font-size: 18px;
+  letter-spacing: 0.1rem;
+  cursor: pointer;
 }

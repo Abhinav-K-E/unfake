@@ -8,6 +8,7 @@ import { useEffect, useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
 import PageNotFound from "./pages/PageNotFound/PageNotFound";
 import Pricing from "./pages/Pricing/Pricing";
+import Certificate from "./pages/certificate/Certificate";
 
 function App() {
   const [page, setPage] = useState(true);
@@ -21,7 +22,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/pricing" element={<Pricing />} />
-        <Route path="/certification" element={<Home />} />
+        <Route path="/certification" element={<Certificate />} />
         {/* <Route path="/contact" element={<Contact />} /> */}
         <Route path="*" element={<PageNotFound />} />
       </Routes>

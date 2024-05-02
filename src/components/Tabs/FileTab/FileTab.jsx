@@ -9,7 +9,7 @@ const FileTab = () => {
   const [loader, setLoader] = useState(false);
   const [result, setResult] = useState("");
 
-  const baseUrl = "https://aa8c-2a09-bac5-3dab-1eb-00-31-110.ngrok-free.app";
+  const baseUrl = "https://43b9-2a09-bac5-3b1d-1a82-00-2a4-2.ngrok-free.app";
 
   const fileInputRef = useRef(null);
 

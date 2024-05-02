@@ -1,6 +1,9 @@
 .result-page{
     width: 100%;
     padding: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .result-grid{
@@ -25,13 +28,22 @@
 
 .result-grid-right{
     display: flex;
-    align-items: center;
+    flex-direction: column;
     justify-content: center;
     gap: 40px;
 }
 
 .rs-progress-circle-info{
     position: absolute;
+}
+
+.progress-grp{
+    display: flex;
+    gap: 20px;
+}
+
+.crti-btn{
+    padding: 20px 40px;
 }
 
 

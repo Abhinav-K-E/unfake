@@ -20,35 +20,40 @@ const ResultPage = () => {
 
   return (
     <div className="result-page">
-      <h1 className="result-head">Analysis</h1>
-      <div className="result-grid">
-        <div className="result-grid-left">
-          <img src={`${baseUrl}/dwd/${finalResult?.fid}`} alt="" />
-        </div>
-        <div className="result-grid-right">
-          <div className="result-grp">
-            <div className="result-grp-name">Fake</div>
-            <Progress.Circle
-              percent={Math.round(finalResult?.fake * 100)} // Set the percentage value
-              strokeColor={"#0072FA"} // Set the stroke color
-              strokeWidth={10} // Set the stroke width
-              trailWidth={10} // Set the trail width (background)
-              style={customProgressBarStyle}
-              strokeLinecap="round"
-              trailColor="rgba(0, 114, 250, 0.09)"
-            />
+      <div className="result-wrapper">
+        <h1 className="result-head">Analysis</h1>
+        <div className="result-grid">
+          <div className="result-grid-left">
+            <img src={`${baseUrl}/dwd/${finalResult?.fid}`} alt="" />
           </div>
-          <div className="result-grp">
-            <div className="result-grp-name">Real</div>
-            <Progress.Circle
-              percent={Math.round(finalResult?.real * 100)} // Set the percentage value
-              strokeColor={"#0072FA"} // Set the stroke color
-              strokeWidth={10} // Set the stroke width
-              trailWidth={10} // Set the trail width (background)
-              style={customProgressBarStyle}
-              strokeLinecap="round"
-              trailColor="rgba(0, 114, 250, 0.09)"
-            />
+          <div className="result-grid-right">
+            <div className="progress-grp">
+              <div className="result-grp">
+                <div className="result-grp-name">Fake</div>
+                <Progress.Circle
+                  percent={Math.round(finalResult?.fake * 100)} // Set the percentage value
+                  strokeColor={"#0072FA"} // Set the stroke color
+                  strokeWidth={10} // Set the stroke width
+                  trailWidth={10} // Set the trail width (background)
+                  style={customProgressBarStyle}
+                  strokeLinecap="round"
+                  trailColor="rgba(0, 114, 250, 0.09)"
+                />
+              </div>
+              <div className="result-grp">
+                <div className="result-grp-name">Real</div>
+                <Progress.Circle
+                  percent={Math.round(finalResult?.real * 100)} // Set the percentage value
+                  strokeColor={"#0072FA"} // Set the stroke color
+                  strokeWidth={10} // Set the stroke width
+                  trailWidth={10} // Set the trail width (background)
+                  style={customProgressBarStyle}
+                  strokeLinecap="round"
+                  trailColor="rgba(0, 114, 250, 0.09)"
+                />
+              </div>
+            </div>
+            <button className="certi-btn">Generate certification</button>
           </div>
         </div>
       </div>

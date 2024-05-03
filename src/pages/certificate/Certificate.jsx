@@ -11,7 +11,7 @@ import { useStore } from "../../context/StoreContext";
 
 const Certificate = () => {
   const certificateRef = useRef(null);
-  const { certiId, setCertiId } = useStore();
+  const { certiId, setCertiId, prediction, setPrediction } = useStore();
 
   const downloadCertificate = () => {
     html2canvas(certificateRef.current).then((canvas) => {
@@ -23,8 +23,6 @@ const Certificate = () => {
     });
   };
 
-  const notDeepFake = true;
-
   return (
     <div className="certi-wrapper">
       {/* <h1>Certificate of Completion</h1> */}
@@ -35,17 +33,21 @@ const Certificate = () => {
             Un<span>Mask</span>
           </h1>
           <div className="divider"></div>
-          <img src={notDeepFake ? TITLE : DEEPFAKE} width={500} alt="" />
+          <img
+            src={prediction == "real" ? TITLE : DEEPFAKE}
+            width={500}
+            alt=""
+          />
           <div className="certi-flex">
             <div className="certi-flex-left">
               <div className="certi-grp">
                 <div className="grp-title">Issued for</div>
-                <div className="grp-name">Username</div>
+                <div className="grp-name">John smith</div>
                 <div className="divider"></div>
               </div>
               <div className="certi-grp">
-                <div className="grp-title">File ID</div>
-                <div className="grp-name">#{certiId}</div>
+                <div className="grp-title">File Hash</div>
+                <div className="grp-name certi-id">#{certiId}</div>
                 <div className="divider"></div>
               </div>
             </div>

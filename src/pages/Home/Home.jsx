@@ -14,7 +14,7 @@ const Home = () => {
       <div className="sec-2">
         <Tabs />
       </div>
-      <button className="Btn">
+      <a href="https://wa.me/+141528886" className="Btn">
         <span className="svgContainer">
           <svg
             viewBox="0 0 448 512"
@@ -26,7 +26,7 @@ const Home = () => {
           </svg>
         </span>
         <span className="BG" />
-      </button>
+      </a>
     </div>
   );
 };

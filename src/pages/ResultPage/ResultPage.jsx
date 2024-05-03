@@ -17,7 +17,14 @@ const ResultPage = () => {
     // Adjust the font size of the progress bar text
   };
 
-  const { finalResult, setFinalResult, certiId, setCertiId } = useStore();
+  const {
+    finalResult,
+    setFinalResult,
+    certiId,
+    setCertiId,
+    prediction,
+    setPrediction,
+  } = useStore();
 
   const navigate = useNavigate();
 
@@ -60,6 +67,7 @@ const ResultPage = () => {
               className="certi-btn"
               onClick={() => {
                 setCertiId(finalResult?.hash);
+                setPrediction(finalResult?.prediction);
                 navigate("/certification");
               }}
             >

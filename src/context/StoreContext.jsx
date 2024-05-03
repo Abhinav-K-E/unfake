@@ -7,7 +7,8 @@ const StoreContext = createContext();
 export const StoreProvider = ({ children }) => {
   const [finalResult, setFinalResult] = useState(null);
   const [imageSet, setImageSet] = useState([]);
-  const [certiId,setCertiId]=useState(null);
+  const [certiId, setCertiId] = useState(null);
+  const [prediction, setPrediction] = useState(null);
 
   const value = {
     finalResult,
@@ -15,7 +16,9 @@ export const StoreProvider = ({ children }) => {
     imageSet,
     setImageSet,
     certiId,
-    setCertiId
+    setCertiId,
+    prediction,
+    setPrediction,
   };
 
   return (

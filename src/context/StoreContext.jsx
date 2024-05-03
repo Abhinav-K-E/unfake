@@ -7,12 +7,15 @@ const StoreContext = createContext();
 export const StoreProvider = ({ children }) => {
   const [finalResult, setFinalResult] = useState(null);
   const [imageSet, setImageSet] = useState([]);
+  const [certiId,setCertiId]=useState(null);
 
   const value = {
     finalResult,
     setFinalResult,
     imageSet,
     setImageSet,
+    certiId,
+    setCertiId
   };
 
   return (

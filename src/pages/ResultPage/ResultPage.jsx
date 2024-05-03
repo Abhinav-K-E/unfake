@@ -63,16 +63,28 @@ const ResultPage = () => {
                 />
               </div>
             </div>
-            <button
-              className="certi-btn"
+            <div className="btns">
+              <button
+                className="certi-btn"
+                onClick={() => {
+                  setCertiId(finalResult?.hash);
+                  setPrediction(finalResult?.prediction);
+                  navigate("/certification");
+                }}
+              >
+                Generate certification
+              </button>
+              <button
+              className="certi-btn flg-btn"
               onClick={() => {
                 setCertiId(finalResult?.hash);
                 setPrediction(finalResult?.prediction);
                 navigate("/certification");
               }}
             >
-              Generate certification
+              Flag
             </button>
+            </div>
           </div>
         </div>
       </div>

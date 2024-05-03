@@ -46,6 +46,15 @@
     padding: 20px 40px;
 }
 
+.flg-btn{
+    width: 130px;
+}
+
+.btns{
+    display: flex;
+    gap: 20px;
+}
+
 
 @media (max-width:720px) {
     .result-grid{

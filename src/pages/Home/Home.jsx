@@ -8,7 +8,7 @@ const Home = () => {
       <div className="sec-1">
         <h1 className="main-txt">
           Spot the <span className="grad">Truth</span> : Unmasking <br></br>
-          Deepfakes
+          Deepfakes Media
         </h1>
       </div>
       <div className="sec-2">
